@@ -23,8 +23,8 @@ public class TopicServiceImpl implements TopicService{
 	QuestionRepository questionRepository;
 	
 	private static final String[] welcomeMessage = { "Hi! I am the Ameri100 Learning Assistant. You can call me ALA",
-			"Ask a question to get started.",
-			"You can ask questions from BPC, Cloud, UX, Hana CDS, SCP, MEAN stack.",
+			"Select a topic to get started.",
+			
 			};
 	private static final String content = "Topic";
 

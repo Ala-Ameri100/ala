@@ -9,14 +9,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.learn.ala.exception.ResourceNotFoundException;
 import com.learn.ala.model.MessageDTO;
+import com.learn.ala.model.QuestionAnswerDTO;
 import com.learn.ala.model.Questions;
 import com.learn.ala.repository.QuestionRepository;
+import com.learn.ala.service.AnswerCheckService;
 import com.learn.ala.service.TopicService;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -28,6 +30,9 @@ public class QueryController {
 	
 	@Autowired
 	private TopicService topicService;
+	
+	@Autowired
+	private AnswerCheckService answerCheckService;  
 
 	
 	@GetMapping("/welcome")
@@ -57,5 +62,12 @@ public class QueryController {
 		return new ResponseEntity<>(difficultyLevels, HttpStatus.OK);
 	}
 
+	@PostMapping("/getAnswerCheck")
+	public ResponseEntity<List<Questions>> retrieveCorrectAnswer(@RequestBody QuestionAnswerDTO questionAnswerDto) {
+		
+		answerCheckService.retrieveCorrectAnswer(questionAnswerDto);
+		List<Questions> difficultyLevels = null;
+		return new ResponseEntity<>(difficultyLevels, HttpStatus.OK);
+	}
 
 }
