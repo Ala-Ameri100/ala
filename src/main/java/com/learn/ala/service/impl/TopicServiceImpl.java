@@ -22,11 +22,7 @@ public class TopicServiceImpl implements TopicService{
 	@Autowired
 	QuestionRepository questionRepository;
 	
-	private static final String[] welcomeMessage = { "Hi! I am the Ameri100 Learning Assistant. You can call me ALA",
-			"Select a topic to get started.",
-			
-			};
-	private static final String content = "Topic";
+	private static final String[] welcomeMessage = { "Hi! I am the Ameri100 Learning Assistant. You can call me ALA"};
 
 	@Override
 	public List<Questions> retrieveDistinctTopics() {
@@ -70,10 +66,7 @@ public class TopicServiceImpl implements TopicService{
 			listDto.add(dto);
 		}
 		
-		MessageDTO dto = new MessageDTO();
-		dto.setMessage(content);
-		dto.setClickable(Boolean.TRUE);
-		listDto.add(dto);
+		
 		// TODO Auto-generated method stub
 		return listDto;
 	}
