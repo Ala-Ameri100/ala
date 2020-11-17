@@ -1,4 +1,4 @@
-package com.learn.nlp_application.core;
+package com.learn.ala.nlp_application.core;
 
 import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import org.springframework.context.annotation.Bean;
