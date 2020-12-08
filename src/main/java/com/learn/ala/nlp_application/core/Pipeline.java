@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Properties;
 
-@Service
+
 public class Pipeline {
 
     private static Properties properties;

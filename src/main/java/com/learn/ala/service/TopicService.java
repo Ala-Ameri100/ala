@@ -14,5 +14,7 @@ public interface TopicService {
 	List<Questions> retrieveQuestionsByTopic(String topic, String difficultyLevel);
 
 	List<MessageDTO> retrieveWelcomeMessage();
+   
+	List<Questions> getTopics();
 
 }

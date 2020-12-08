@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import com.google.gson.Gson;
@@ -17,24 +18,21 @@ import com.learn.ala.service.TopicService;
 import com.learn.ala.util.Util;
 
 @Service
+@Scope("prototype")
 public class TopicServiceImpl implements TopicService{
 	
 	@Autowired
 	QuestionRepository questionRepository;
+    List<Questions> questions = new ArrayList<Questions>();
 	
-	private static final String[] welcomeMessage = { "Hi! I am the Ameri100 Learning Assistant. You can call me ALA"};
+	private static final String[] welcomeMessage = { "Hi! I am the Ameri100 Learning Assistant. You can call me ALA" };
 
 	@Override
 	public List<Questions> retrieveDistinctTopics() {
 		
 		Collection<Questions> question = questionRepository.findAll();
-		List<Questions> questions = question.stream().filter(Util.distinctByKey(q-> q.getTopic())).collect( Collectors.toList() );
+		questions = question.stream().filter(Util.distinctByKey(q-> q.getTopic())).collect( Collectors.toList() );
 		
-		// TODO Auto-generated method stub
-		Gson gson = new Gson();
-		 // convert your list to json
-		 String jsonCartList = gson.toJson(questions);
-	      System.out.println(jsonCartList);
 		return questions;
 	}
 
@@ -48,8 +46,8 @@ public class TopicServiceImpl implements TopicService{
 
 	@Override
 	public List<Questions> retrieveQuestionsByTopic(String topic, String difficultyLevel) {
-		List<Questions> questions = questionRepository.findQuestionsByTopicAndDifficultyLevel(topic, difficultyLevel);
-		return questions;
+		List<Questions> question = questionRepository.findQuestionsByTopicAndDifficultyLevel(topic, difficultyLevel);
+		return question;
 	}
 
 	@Override
@@ -65,12 +63,17 @@ public class TopicServiceImpl implements TopicService{
 			dto.setClickable(Boolean.FALSE);
 			listDto.add(dto);
 		}
-		
-		
-		// TODO Auto-generated method stub
 		return listDto;
 	}
 	
-	
+	@Override
+	public List<Questions> getTopics() {
+		
+		Collection<Questions> question = questionRepository.findAll();
+		questions = question.stream().filter(Util.distinctByKey(q-> q.getTopic())).collect( Collectors.toList() );
+		
+		return questions;
+		
+	}
 
 }

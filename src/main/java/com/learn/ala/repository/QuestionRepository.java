@@ -15,6 +15,10 @@ public interface QuestionRepository extends JpaRepository<Questions, Long>{
 	@Query(value="select distinct q.difficulty_level from Questions q where q.topic =:topic",nativeQuery = true)
 	List<String> findDistinctLevelByTopic(String topic);
 	
+	@Query(value="select distinct q.topic from Questions q where q.topic =:topic",nativeQuery = true)
+	List<String> findDistinctTopic(String topic);
+	
+	
 	@Query(value="select * from Questions q where q.topic =:topic and q.difficulty_level=:difficultyLevel",nativeQuery = true)
 	List<Questions> findQuestionsByTopicAndDifficultyLevel(String topic, String difficultyLevel);
 
