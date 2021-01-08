@@ -30,7 +30,7 @@
 					<groupId>Ab</groupId>
 					<version>0.0.4.3</version>
 					<scope>system</scope>
-					<systemPath>${project.basedir}/lib/ab.jar</systemPath>
+					<systemPath>${project.basedir}/lib/Ab.jar</systemPath>
 		 			 <type>jar</type>
 		 			 <optional>true</optional>
 					
@@ -108,9 +108,22 @@
 
 	<build>
 		<plugins>
+		
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				 <configuration>
+				    <includeSystemScope>true</includeSystemScope>
+				  
+    <!-- <outputDirectory>output-resources</outputDirectory>
+    <resources>
+        <resource>
+            <directory>input-resources</directory>
+            
+            <filtering>false</filtering>
+        </resource>
+    </resources> -->
+</configuration>
 			</plugin>
 		</plugins>
 	</build>
